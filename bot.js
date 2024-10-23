@@ -24,7 +24,15 @@ const commands = [
     },
     {
         name: 'pausa',
+        description: 'A veces una pausa es necesaria...',
+    },
+    {
+        name: 'almuerzo',
         description: 'Envía un mensaje con el horario de pausa para el almuerzo y un timestamp.',
+    },
+    {
+        name: 'regreso',
+        description: '¿Estás list@ para regresar a programar?'
     },
     {
         name: 'salida',
@@ -54,7 +62,7 @@ client.on('interactionCreate', async interaction => {
 
     const { commandName, user } = interaction;
     const username = user.username;
-    const timestamp = new Date().toLocaleString();
+    const timestamp = new Date().toLocaleString('es-AR', { timeZone: 'America/Argentina/Buenos_Aires' });
 
     if (commandName === 'ping') {
         await interaction.reply('pong!');
@@ -65,6 +73,14 @@ client.on('interactionCreate', async interaction => {
     }
 
     if (commandName === 'pausa') {
+        await interaction.reply(`${username} cree que no hay nada mejor que tomarse un tiempo para descansar un poco 🪫: ${timestamp}`);
+    }
+
+    if (commandName === 'regreso'){
+        await interaction.reply(`${username} ¡volvió con todas las pilas! 🔋💪🏻: ${timestamp}`);
+    }
+
+    if (commandName === 'almuerzo') {
         await interaction.reply(`${username} ha registrado el Horario de pausa para el almuerzo 🍽️ : ${timestamp}`);
     }
 
